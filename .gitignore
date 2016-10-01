@@ -1,4 +1,5 @@
 *.zip
 *.log
 *.pdf
+*.psd
 /node_modules/*
