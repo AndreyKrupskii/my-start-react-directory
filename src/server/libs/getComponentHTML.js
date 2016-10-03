@@ -1,7 +1,16 @@
-import React    from 'react';
+import React from 'react';
 import ReactDom from 'react-dom/server';
-import App      from './../../client/components/App.component';
+import { Provider } from 'react-redux';
+import configStore from './../../client/store';
 
-const componetHtml = ReactDom.renderToString(<App />);
+import App from './../../client/components/App.component';
+
+const	store	=	configStore(); 
+
+const componetHtml = ReactDom.renderToString(
+	<Provider	store={store}>				
+		<App/>		
+	</Provider>
+);
 
 module.exports = componetHtml;
