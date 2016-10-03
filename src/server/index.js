@@ -9,14 +9,13 @@ import express  from 'express';
 import favicon from 'serve-favicon';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import React    from 'react';
-import ReactDom from 'react-dom/server';
-import App      from './../client/components/App.component';
 
-import renderHTML from './libs/renderHTML';
+import session from './libs/sessions';
 import logger from './libs/log.js';
 import HttpError from './libs/HTTPError';
 import bodyParser from 'body-parser';
+
+import router from './routes';
 /*
 	******************************
 	Application init
@@ -24,22 +23,17 @@ import bodyParser from 'body-parser';
 */
 const app = express();
 const log = logger(module);
-const router = express.Router();
 
 // Application uses
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session);
 app.use(express.static(path.join(__dirname, './../../public')));
 app.use(favicon(path.join(__dirname, './../../public', 'favicon.ico')));
 
 app.use('/', router);
 
-// Application middlewares
-router.get('/', function(req, res, next) {
-	const componentHTML = ReactDom.renderToString(<App />);
-	res.end(renderHTML(componentHTML));
-});
 
 // Not found error handler
 app.use(function(req, res, next) {
