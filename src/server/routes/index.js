@@ -1,15 +1,14 @@
-import express from 'express';
-
 import renderHTML from './../libs/renderHTML';
 import logger from './../libs/log';
 
-const router = express.Router();
+
 const log = logger(module);
 
-router.get('/', function(req, res, next) {
-	const componentHTML = require('./../libs/getComponentHTML');
-	const elementHTML = renderHTML(componentHTML);
-	res.end(elementHTML);
-});
+module.exports = function(req, res, next) {
+	const redux = require('./../libs/getComponentHTML');
+	const componentHtml = redux.componentHtml;
+	const preloadedState = redux.preloadedState; 
 
-module.exports = router;
+	const elementHTML = renderHTML(componentHtml, preloadedState);
+	res.end(elementHTML);
+};

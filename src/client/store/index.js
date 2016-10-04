@@ -5,9 +5,10 @@ import rootReducer from './../reducers';
 
 export default function configStore() {
 	const logger = createLogger();
-	
+	const preloadedState = window.__PRELOADED_STATE__;
 	const store = createStore(
-		rootReducer, 
+		rootReducer,
+		preloadedState,
 		applyMiddleware(thunk, logger)
 	);
 

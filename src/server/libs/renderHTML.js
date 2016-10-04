@@ -1,6 +1,6 @@
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:9999/public' : '.';
    
-function renderHTML(componentHTML) {
+function renderHTML(componentHTML, preloadedState) {
 	return `
 		<!DOCTYPE html>
 			<html>
@@ -12,6 +12,9 @@ function renderHTML(componentHTML) {
 			</head>
 			<body>
 				<div id="react-view">${componentHTML}</div>
+				<script>
+          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
+        </script>
 				<script type="application/javascript" src="${assetUrl}/assets/bundle.js"></script>
 			</body>
 		</html>

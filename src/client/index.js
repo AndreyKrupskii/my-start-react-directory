@@ -7,7 +7,6 @@ import App from './components/App.component';
 
 const	store	=	configStore();
 
-
 ReactDOM.render( 
 	<Provider	store={store}>				
 		<App/>		
