@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from	'react-redux';
 
 import configStore from './store';
-import App from './components/App.component';
+import routes from './routes';
 
 const	store	=	configStore();
 
 ReactDOM.render( 
-	<Provider	store={store}>				
-		<App/>		
+	<Provider	store={store}>		 
+		{routes}
 	</Provider>, 
 	document.getElementById('react-view')
 );  
 
-  
+    

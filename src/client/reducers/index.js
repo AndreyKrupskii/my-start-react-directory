@@ -1,5 +1,6 @@
 const initialState = {
-	name: 'Charly!'
+	name: 'Charly!', 
+	noname: 'trol'
 }
 
 export default function userState(state = initialState){
